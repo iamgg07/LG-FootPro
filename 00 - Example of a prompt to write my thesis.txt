@@ -1,0 +1,31 @@
+Prompt: You're a Master at writing academic thesis. Based on the codes and comments below, writ me 400 words. if you feel the need to add picture, put place holders, I'll complete it "Data preparation" section for my thesis"
+# Load the data
+data1 = pd.read_csv("Premier_League_2015_2016.csv")
+data2 = pd.read_csv("Premier_League_2016_2017.csv")
+data3 = pd.read_csv("Premier_League_2017_2018.csv")
+data4 = pd.read_csv("Premier_League_2018_2019.csv")
+data5 = pd.read_csv("Premier_League_2019_2020.csv")
+data6 = pd.read_csv("Premier_League_2020_2021.csv")
+data7 = pd.read_csv("Premier_League_2021_2022.csv")
+data8 = pd.read_csv("Premier_League_2022_2023.csv")
+data9 = pd.read_csv("Premier_League_2023_2024.csv")
+data10 = pd.read_csv("Premier_League_2024.csv")
+
+# Concatenate all dataframes
+all_data = pd.concat([data1, data2, data3, data4, data5, data6, data7, data8, data9, data10], ignore_index=True)
+
+result: 3430 rows × 153 columns
+# Check for columns with null values
+# Drop columns with any null values
+# Check the data type of the "Date" column
+
+# Convert the 'Date' column from string to datetime format and save it to a new column 'Date_Formatted'
+all_data_cleaned['Date'] = pd.to_datetime(all_data_cleaned['Date'], format='mixed')
+
+# Check the result
+print(all_data_cleaned[['Date']].head())
+# Extract the year from the 'Date' column and create a new 'Season' column, so we could split train(before)/test(2024)
+all_data_cleaned['Season'] = all_data_cleaned['Date'].dt.year
+
+# Save the updated DataFrame to a new CSV file
+all_data_cleaned.to_csv('Premier_League_Season.csv', index=False)
